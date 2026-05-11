@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Images</title>
+    <link rel="stylesheet" href="revise_2.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="left">
+            <a href="html_2.html">Back to Search</a> <!-- Added link back to main page -->
+        </div>
+        <div class="right">
+            <a href="#">
+               <img src="example.png" alt="icon" style="width: 16px;height: 16px;"> 
+            </a>
+            <a class="signin" href="#">Sign in</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="logo">
+            <span class="g">G</span>
+            <span class="o">o</span>
+            <span class="o1">o</span>
+            <span class="g1">g</span>
+            <span class="l">l</span>
+            <span class="e">e</span>
+        </h1>
+        <form action="https://www.google.com/search" method="get"> <!-- Placeholder action; replace with your own logic -->
+            <input type="hidden" name="tbm" value="isch"> <!-- For image search -->
+            <div class="search-container">
+                <input type="search" name="q" class="search-box" placeholder="Search for images or paste image URL">
+                
+                <div class="icon-group">
+                    <img src="mic.png" alt="mic" class="icon mic-icon" title="Voice search">
+                    <label for="image-upload" class="lens-icon">
+                        <img src="icons8-google-lens-48.png" alt="Upload image">
+                    </label>
+                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                </div>
+            </div>
+            
+            <div class="button">
+                <input type="submit" value="Search Images">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Basic handling for image upload (placeholder; expand as needed)
+        const imageUpload = document.getElementById('image-upload');
+        imageUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                // For now, just alert; you can add image processing or API calls here
+                alert(`Selected image: ${file.name}. (Add your image search logic here.)`);
+            }
+        });
+
+        // Reuse mic icon functionality from main page if needed
+        const micIcon = document.querySelector('.mic-icon');
+        const searchBox = document.querySelector('.search-box');
+        if (micIcon) {
+            micIcon.addEventListener('click', () => {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    alert('Speech recognition not supported.');
+                    return;
+                }
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                recognition.onresult = (event) => {
+                    searchBox.value = event.results[0][0].transcript;
+                };
+                recognition.start();
+            });
+        }
+    </script>
+</body>
+</html>

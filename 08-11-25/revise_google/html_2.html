@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <link rel="stylesheet" href="revise_2.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="left">
+            <a href="#">About</a>
+            <a href="#">Store</a>
+        </div>
+        <div class="right">
+            <a href="#">Gmail</a>
+            <a href="#">Images</a>
+            <img src="flask.png" atl="lab" width="29px" height="25px">
+            <img src="grid.png" alt="luv" width="17px" height="17px">
+            <a class="signin" href="#">Signin</a>
+        </div>
+    </div>
+    <div class="container">
+            <h1 class="logo">
+                <span class="g">G</span>
+                <span class="o">o</span>
+                <span class="o1">o</span>
+                <span class="g1">g</span>
+                <span class="l">l</span>
+                <span class="e">e</span>
+            </h1>   
+                <form action="https://www.google.com/search">
+                    <div class="search-container">
+                        <input type="search" name="q" class="search-box" placeholder="Search Google or type a url">
+                        <div class="icon-group">
+                            <img src="mic.png" alt="mic" class="icon mic-icon" title="Voice search">
+                            <a href="page2.html" class="lens-icon">
+                                <img src="icons8-google-lens-48.png" alt="icon" > 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Google Search">
+                        <input type="submit" value="I am Feeling lucky">
+                    </div>
+                </form>
+               
+                
+                
+    </div>
+
+    <script>
+        // click handlers for icons
+        const searchBox = document.querySelector('.search-box');
+        const form = searchBox.form;
+        const searchIcon = document.querySelector('.search-icon');
+        const micIcon = document.querySelector('.mic-icon');
+
+        if (searchIcon) {
+            searchIcon.addEventListener('click', () => {
+                form.submit();
+            });
+        }
+
+        if (micIcon) {
+            micIcon.addEventListener('click', () => {
+                // Web Speech API for voice input
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    alert('Speech recognition not supported in this browser.');
+                    return;
+                }
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    searchBox.value = transcript;
+                    form.submit();
+                };
+                recognition.onerror = (e) => {
+                    console.error('Speech recognition error', e);
+                };
+                recognition.start();
+            });
+        }
+    </script>
+</body>
+</html>

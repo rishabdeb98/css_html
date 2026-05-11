@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial,sans-serif;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 100px;
+    width: 100%;   
+}
+.left a{
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 14px; 
+}
+.right a{
+    text-decoration: none;
+    margin-right: 0px;
+    font-size: 14px;
+}
+.signin {
+    display: inline;
+    background-color: #1a73e8;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.signin:hover{
+    background-color: #0b59c7;
+}
+.container
+{
+
+}
+.logo
+{
+    
+}
