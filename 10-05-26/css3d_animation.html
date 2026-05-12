@@ -10,11 +10,14 @@
         width:300px;
         height:100px;
         background-color: pink;
-        border: 1px solid black;
+        animation-name: mymove;
+        animation-duration: 8s;
+
     }
-    div#mydiv
+    @keyframes mymove
     {
-        transform: rotate(20deg);
+        from {background-color: pink;}
+        to {background-color: red;}
     }
     </style>
 </head>
